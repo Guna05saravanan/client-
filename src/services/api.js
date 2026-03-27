@@ -1,7 +1,10 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-var BASE_URL = `${import.meta.env.VITE_SERVER_URL}/api`;
+let serverUrl = import.meta.env.VITE_SERVER_URL || '';
+if (serverUrl.endsWith('/')) serverUrl = serverUrl.slice(0, -1);
+
+const BASE_URL = `${serverUrl}/api`;
 
 const getHeaders = () => {
   const token = Cookies.get('token');
